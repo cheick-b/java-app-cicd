@@ -193,7 +193,7 @@ jobs:
 
       - name: Push Docker image to ECR
         run: |
-          APP_VERSION=grep -m2 '<version>' pom.xml | tail -1 | grep -oP '(?<=>).*(?=<)'
+          APP_VERSION=$(grep -m2 '<version>' pom.xml | tail -1 | grep -oP '(?<=>).*(?=<)')
           echo $APP_VERSION
 
           docker push ${{ steps.login-ecr.outputs.registry }}/geo_app:${{ github.sha }}
